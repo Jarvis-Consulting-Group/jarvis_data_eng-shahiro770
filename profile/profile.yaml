@@ -49,10 +49,10 @@ highlighted_projects:
     #URL is optional
     git_url: "https://github.com/shahiro770/CandleLight"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Developed a two-dimensional roguelike adventure game in C# and Unity, similar to games such as The Oregon Trail
+    description: Developed a two-dimensional roguelike turn-based adventure game in C# and Unity, similar to games such as The Oregon Trail. The game features hand-drawn pixel art, as well as usage of various post-processing effects to provide an immersive experience.
   - name: Space Invaders
     git_url: "https://github.com/shahiro770/space-invaders"
-    description: Created a space invaders style, top down shooting game, using Java and the GUI library Swing.
+    description: Created a space invaders style, top down shooting game, using Java and the GUI library Swing. The game makes use of basic OOP design principles to efficiently handle the movement and interactions of the player, enemies, and barricades.
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).

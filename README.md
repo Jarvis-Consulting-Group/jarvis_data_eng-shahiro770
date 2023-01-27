@@ -19,9 +19,9 @@ Project source code: [https://github.com/Jarvis-Consulting-Group/jarvis_data_eng
 
 
 ## Highlighted Projects
-**CandleLight** [[GitHub](https://github.com/shahiro770/CandleLight)]: Developed a two-dimensional roguelike adventure game in C# and Unity, similar to games such as The Oregon Trail
+**CandleLight** [[GitHub](https://github.com/shahiro770/CandleLight)]: Developed a two-dimensional roguelike turn-based adventure game in C# and Unity, similar to games such as The Oregon Trail. The game features hand-drawn pixel art, as well as usage of various post-processing effects to provide an immersive experience.
 
-**Space Invaders** [[GitHub](https://github.com/shahiro770/space-invaders)]: Created a space invaders style, top down shooting game, using Java and the GUI library Swing.
+**Space Invaders** [[GitHub](https://github.com/shahiro770/space-invaders)]: Created a space invaders style, top down shooting game, using Java and the GUI library Swing. The game makes use of basic OOP design principles to efficiently handle the movement and interactions of the player, enemies, and barricades.
 
 
 ## Professional Experiences

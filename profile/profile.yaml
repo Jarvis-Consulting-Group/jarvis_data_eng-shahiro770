@@ -1,0 +1,98 @@
+# Preferred name (Characters only)
+name: "Shahir Chowdhury"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/Jarvis-Consulting-Group/jarvis_data_eng-shahiro770
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: Hi, my name is Shahir. I studied at the University of Windsor, where I completed my bachelors degree in computer science and graduated with a cumulative GPA of 3.3/4.0 and major GPA of 3.7/4.0. During my time at the university, I interned for 16 months at IBM. While there, I primarily worked as a frontend developer, implementing UI features and workflows on SPSS Statistics, a statistical analysis application. Upon graduating, I worked for a year at Amazon in the operations side. My work was mainly focused on maintaining and updating services related to workflows sellers would use for inbounding their goods to Amazon Fulfillment Centers. I find learning to be a very fun process, which is why I think I enjoyed my time at IBM and Amazon with all of the opportunities they presented to dive deep into technologies I wasn't familiar with. I prioritize personal growth more than anything, and am eagerly looking for opportunities to improve my skills as a software developer. If given the chance, I will do everything I can to deliver on any set of expectations. Outside of work, I enjoy going to the gym, and playing video games. I hope you enjoy reading my profile.
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  # At least 5 skills
+  proficient:
+    - Java
+    - JavaScript
+    - ReactJS
+    - Agile/Scrum
+    - Git
+    - Unity
+  # At least 5 skills
+  competent:
+    - C#
+    - Python
+    - Redux
+    - TypeScript
+    - SQL
+  # At least 5 skills
+  familiar:
+    - Bash
+    - AWS
+    - Node.js
+    - GraphQL
+    - C/C++
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "/linux_sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Implemented a monitoring agent to collect real-time resource usage of nodes in a Linux cluster using, using Bash shell script. The results are stored in a relational database via PostgreSQL, where they can be queried for analysis.
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+  #project name
+  - name: "CandleLight"
+    #URL is optional
+    git_url: "https://github.com/shahiro770/CandleLight"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Developed a two-dimensional roguelike adventure game in C# and Unity, similar to games such as The Oregon Trail
+  - name: Space Invaders
+    git_url: "https://github.com/shahiro770/space-invaders"
+    description: Created a space invaders style, top down shooting game, using Java and the GUI library Swing.
+
+#List of professional experience
+#The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Software Developer"
+    company: "Jarvis"
+    duration: "2023-present"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "Training to be a technical consultant, learning the latest in industry standard technologies and best practices. Currently have learned fundamentals of shell scripting in Bash, as well as working with Linux and PostgreSQL as well as having used the technologies to develop a Linux cluster monitoring agent."
+  - title: "Software Development Engineer I"
+    company: "Amazon"
+    duration: "2021-2022"
+    description: "Worked on the new platform, Send To Amazon (STA), developing the new workflow through which sellers create shipments for products, receive estimates for delivery, and ultimately schedule shipment transportation. Primarily used TypeScript and ReactJS for frontend related work, and Java and Spring for backend related API development and event orchestration."
+  - title: "Software Developer"
+    company: "IBM"
+    duration: "2018-2019"
+    description: "Developed tools with ReactJS and Javascript for the redesign of SPSS Statistics, a statistical analysis and data preparation application. This work involved utilizing various frontend spread-sheeting libraries, such as Handsontable and Ag-grid, for creating performant spreadsheets for displaying and modifying data."
+  - title: "Teaching Assistant"
+    company: "University of Windsor"
+    duration: "2017-2020"
+    description: "Assisted computer science students with learning fundamental discrete math concepts, the basics of C, data structures, and computational theory. I also evaluated weekly assignments and tests, while carrying out exam related duties such as proctoring and marking."
+
+#List of edcuation
+education:
+  - school_name: "University of Windsor"
+    duration: "2016-2021"
+    degree: "B.C.S. Honours Computer Science Co-Op with Minor in Mathematics"
+    department: "Computer Science"
+    # optional
+    awards_achievements:
+      - "Dean's Renewable Entrance Scholarship (2016, 2021): Maintained an average >80% "
+      - "Dean's List (2016, 2021): Maintained an average >80% "
+      - "GPA: 3.3/4.0"
+
+#Optional section
+others:
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Weightlifting"
+      - "Video Gaming"
+      - "Running"

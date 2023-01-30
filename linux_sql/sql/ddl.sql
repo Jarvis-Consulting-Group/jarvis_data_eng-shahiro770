@@ -1,8 +1,5 @@
 \connect host_agent;
 
--- DROP TABLE PUBLIC.host_info CASCADE;
--- DROP TABLE PUBLIC.host_usage CASCADE;
-
 CREATE TABLE IF NOT EXISTS PUBLIC.host_info (
                                                 id SERIAL NOT NULL,
                                                 hostname VARCHAR NOT NULL,

@@ -2,13 +2,13 @@
 The linux cluster monitoring agent is a light-weight tool designed to get hardware metrics for the machine it is running on in real time, sending the collected data periodically back to an RDBMS to be persisted. The primary users of this tool, the Jarvis Linux Cluster Administration (LCA) team, intend to take the compiled data to generate reports for future resource planning of nodes in the cluster (scale up/down server units horizontally/vertically, cost planning, etc.). The technologies used for building this tool include Bash, Docker, PostgreSQL, Crontab, and Git.
 
 # Quick Start
-Assuming docker is installed on the host node, first run the script required to launch PSQL docker container with the dependencies necessary for the RDBMS and to set up the corresponding credentials. Specifically, the `db_username` and `db_password` fields will be the credentials for the PSQL instance.
+Assuming docker is installed on the host node, first run the script required to launch the PSQL docker container with the dependencies necessary for the RDBMS and to set up the corresponding credentials. Specifically, the `db_username` and `db_password` fields will be the credentials for the PSQL instance.
 ```console
 ./scripts/psql_docker.sh create psql_username psql_password
 ./scripts/psql_docker.sh start 
 ```
 For the machine hosting the database (which will be the same as the one with the docker container created just now), setup the PSQL database.
-```
+```console
 psql -h localhost -U postgres -W
 CREATE DATABASE host_agent;
 ```
@@ -16,13 +16,13 @@ Now create the tables for where the hardware metrics will be stored.
 ```console
 psql -h hostname -U postgres -d host_agent -f ./sql/ddl.sql
 ```
-With all the RDBMS setup done, all thats left is the agent-related work. Any node that plans to have its metrics recorded must first persist its system information to the database.
-```
-./scripts/host_info.sh psql_hostname psql_port host_agent psql_user psql_password
+With all the RDBMS setup done, all that's left is the agent-related work. Any node that plans to have its metrics recorded must first persist its system information to the database.
+```console
+./scripts/host_info.sh psql_hostname psql_port host_agent psql_username psql_password
 ```
 Now with the static system metrics recorded, the script for getting real-time usage data can be used. To run the script manually on its own, use `host_usage.sh`.
-```
-./scripts/host_usage.sh psql_host psql_port db_name psql_user psql_password
+```console
+./scripts/host_usage.sh psql_host psql_port db_name psql_username psql_password
 ```
 To automate the script with crontab such that it records metrics every minute, open up your crontab's config with `crontab -e` and save the following command inside.
 ```
@@ -39,18 +39,18 @@ Majority of the project was done via Bash scripts. In short, the project's desig
 ![image](./assets/Cluster%20Diagram.png)
 ## Scripts
 ### psql_docker.sh
-Used for creating the docker container to run the postgreSQL instance, as well as starting/stopping it. It will not re-create the container if it already exists.
-```
+Used for creating the docker container to run the PostgreSQL instance, as well as starting/stopping it. It will not re-create the container if it already exists.
+```console
 ./psql_docker.sh create|start|stop db_username db_password 
 ```
 ### host_info.sh
-Calls linux commands such as lscpu, vmstat, and hostname and greps for specific hardware data attributes that are presumed to be static. Afterwards, it writes the data to the PSQL database in the table host_info.
-```
+Calls linux commands such as lscpu, vmstat, and hostname, grepping for specific hardware data attributes that are presumed to be static. Afterwards, it writes the data to the PSQL database in the table host_info.
+```console
 ./host_info.sh hostname port db_name db_username db_password
 ```
 ### host_usage.sh
 Similar to host_info.sh, except it collects a different subset of hardware data attributes that fluctuate with the machine's usage. The data is written to the PSQL database in the table host_usage.
-```
+```console
 ./host_usage.sh hostname port db_name db_username db_password
 ```
 ### crontab
@@ -92,10 +92,10 @@ As it was designed under the swift guidelines as an MVP, the project testing was
 Going forward, proper unit and integration tests will be implemented after a verification by the LCA team confirms all requirements have been satisfied.
 
 # Deployment
-For the fast timeline of the project, lightweight deployment tools were utilized in favour of speed and agility. GitHub was used for hosting the app files so that anyone can easily download, run, and/or modify the scripts as they see fit. Additionally, a docker container must be created on the RDBMS hosting node for storage. The agent script for collecting real time hardware usage data `host_usage.sh` is automated via Crontab.
+For the fast timeline of the project, minimal deployment tools were utilized in favour of speed and agility. GitHub was used for hosting the app files so that anyone can easily download, run, and/or modify the scripts as they see fit. Additionally, a docker container must be created on the RDBMS hosting node for storage. The agent script for collecting real time hardware usage data `host_usage.sh` is automated via Crontab.
 
 # Improvements
-Given that this service was designed as a MVP, there are many convenience features that were missed in design that would greatly benefit stakeholders for longterm usage. Some of these include:
+Given that this service was designed as a MVP, there were many convenience features that were missed in design that would greatly benefit stakeholders for longterm usage. Some of these include:
 
 - Proper unit and integration testing, ideally mocking the structure of a linux cluster to confirm any bottleneck for data collection is primarily the network architecture and not any of the scripts involved
 - Further automation of the setup process for the node hosting the RDBMS, ideally making the container and PSQL setup a single command

@@ -1,5 +1,10 @@
 # Introduction
 
+This project consists of a series of queries that can be performed on a PostgreSQL database containing information
+about a members of a recreational sports facility that stores data regarding their bookings. Users such as the
+facility's administration may use such queries to get basic info about its members or do routine cleanup of the database.
+Various fundamental SQL querying techniques and functions are utilized to output the relevant information,
+such as the use of aggregate and window functions.
 # SQL Quries
 
 ###### Table Setup (DDL)

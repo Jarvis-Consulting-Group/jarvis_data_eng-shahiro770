@@ -32,7 +32,7 @@
       "name": "Grep App"
     },
     {
-      "description": "A simple Java app that uses the JDBC API to execute CRUD operations on a PSQL database. The app makes use of DAO and repository design patterns to maintain data integrity. The app had its dependencies managed via Maven and was deployed through docker.",
+      "description": "A simple Java app that uses the JDBC API to execute CRUD operations on a PSQL database. The app makes use of DAO and repository design patterns to maintain data integrity. The app had its dependencies managed via Maven and was deployed through Docker.",
       "git_url": "/core_java/jdbc",
       "name": "JDBC App"
     },

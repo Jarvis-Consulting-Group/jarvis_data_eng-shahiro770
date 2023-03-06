@@ -37,7 +37,6 @@ public interface JavaGrep {
      *
      * @param line input string
      * @return true if there is a match
-     * @throws IOException
      */
     boolean containsPattern(String line);
 

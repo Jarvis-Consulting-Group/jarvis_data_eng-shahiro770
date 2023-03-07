@@ -61,9 +61,19 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
      */
     @Override
     public List<File> listFiles(String rootDir) {
+        List<File> outputFiles = new ArrayList<File>();
         File directoryPath = new File(rootDir);
         File[] directoryFiles = directoryPath.listFiles();
-        return Arrays.asList(directoryFiles);
+        Arrays.stream(directoryFiles).forEach(file -> {
+            if (file.isDirectory()) {
+                outputFiles.addAll(listFiles(file.getAbsolutePath()));
+            }
+            else {
+                outputFiles.add(file);
+            }
+        });
+
+        return outputFiles;
     }
 
     /**

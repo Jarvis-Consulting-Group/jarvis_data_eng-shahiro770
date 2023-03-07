@@ -70,9 +70,18 @@ public class JavaGrepImp implements JavaGrep {
      */
     @Override
     public List<File> listFiles(String rootDir) {
+        List<File> outputFiles = new ArrayList<File>();
         File directoryPath = new File(rootDir);
         File[] directoryFiles = directoryPath.listFiles();
-        return Arrays.asList(directoryFiles);
+        for (int i = 0; i < directoryFiles.length; i++) {
+            if (directoryFiles[i].isDirectory()) {
+                outputFiles.addAll(listFiles(directoryFiles[i].getAbsolutePath()));
+            }
+            else {
+                outputFiles.add(directoryFiles[i]);
+            }
+        }
+        return outputFiles;
     }
 
     /**
@@ -99,7 +108,7 @@ public class JavaGrepImp implements JavaGrep {
     @Override
     public List<String> readLines(File inputFile) {
         if (inputFile == null || inputFile.isFile() == false) {
-            throw new IllegalArgumentException("ERROR: File must not be a directory or null");
+            logger.error("ERROR: File {}, must not be a directory or null", inputFile);
         }
         List<String> lines = new ArrayList<String>();
         try {

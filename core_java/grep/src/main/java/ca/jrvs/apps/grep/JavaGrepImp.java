@@ -54,7 +54,7 @@ public class JavaGrepImp implements JavaGrep {
         for (File f : listFiles(getRootPath())) {
             for (String line : readLines(f)) {
                 if (containsPattern(line)) {
-                    matchedLines.add(line);
+                    matchedLines.add(f.getAbsolutePath() + " " + line);
                 }
             }
         }

@@ -46,7 +46,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
             .forEach(file -> readLines(file).stream()
                 .forEach(line -> {
                     if (containsPattern(line)) {
-                        matchedLines.add(line);
+                        matchedLines.add(file.getPath() + " " + line);
                     };
                 }));
 

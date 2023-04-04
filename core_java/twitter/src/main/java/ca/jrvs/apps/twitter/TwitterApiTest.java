@@ -33,12 +33,12 @@ public class TwitterApiTest {
         try {
             consumer.sign(request);
 
-            System.out.println("Http Request Headers: ");
+            logger.info("Http Request Headers: ");
             Arrays.stream(request.getAllHeaders()).forEach(System.out::println); // method reference
 
             HttpClient httpClient = HttpClientBuilder.create().build();
             HttpResponse response = httpClient.execute(request);
-            System.out.println("PRINTING:" + EntityUtils.toString(response.getEntity()));
+            logger.info("PRINTING:" + EntityUtils.toString(response.getEntity()));
         }
         catch (Exception e) {
             logger.error(e.toString());

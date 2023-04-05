@@ -3,32 +3,41 @@ package ca.jrvs.apps.twitter.dao;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
+import com.google.gdata.util.common.base.PercentEscaper;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import org.apache.http.HttpResponse;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.LoggerFactory;
 
 public class TwitterDao implements CrdDao<Tweet, String> {
 
     // URI constants
-    private static final String API_BASE_URI = "https://api.twitter.com/";
-    private static final String POST_PATH = "/2/tweets/";
-    private static final String READ_PATH = "/2/tweets/";
-    private static final String DELETE_PATH = "/2/tweets/";
+    private static final String API_BASE_URI = "https://api.twitter.com";
+    private static final String API_PATH = "/2/tweets";
+
     // URI symbols
     private static final String QUERY_SYM = "?";
-    private static final String AMPERSAND = "&";
+    private static final String SLASH = "/";
     private static final String EQUAL = "=";
 
     // Response Code
     private static final int HTTP_OK = 200;
+    private static final int HTTP_CREATED = 201;
+
 
     private HttpHelper httpHelper;
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(TwitterDao.class);
 
+    /**
+     * Constructor to set up dependencies
+     *
+     * @param httpHelper
+     */
     public TwitterDao(HttpHelper httpHelper) {
         this.httpHelper = httpHelper;
     }
@@ -40,18 +49,20 @@ public class TwitterDao implements CrdDao<Tweet, String> {
      * @return created entity
      */
     @Override
-    public Tweet create(Tweet tweet) {
+    public Tweet post(Tweet tweet) {
         URI uri;
+        StringEntity entityBody;
         try {
-            uri = getPostURI(tweet);
-        } catch (URISyntaxException e) {
+            uri = getPostURI();
+            entityBody = getPostEntity(tweet);
+        } catch (URISyntaxException | UnsupportedEncodingException e) {
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
 
         // Execute HTTP Request
-        HttpResponse response = httpHelper.httpPost(uri);
+        HttpResponse response = httpHelper.httpPost(uri, entityBody);
 
-        return parseResponseBody(response, HTTP_OK);
+        return parseResponseBody(response, HTTP_CREATED);
     }
 
     /**
@@ -132,28 +143,47 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         return tweet;
     }
 
-    private URI getPostURI(Tweet tweet) throws URISyntaxException {
+    private URI getPostURI() throws URISyntaxException {
         StringBuilder sb = new StringBuilder();
         sb.append(API_BASE_URI);
-        sb.append(POST_PATH);
+        sb.append(API_PATH);
 
         return new URI(sb.toString());
     }
 
+    private StringEntity getPostEntity(Tweet tweet) throws UnsupportedEncodingException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n\"text\":\"");
+        sb.append(tweet.getData().getText());
+        sb.append("\"\n}");
+
+        return new StringEntity(sb.toString());
+    }
+
     private URI getReadURI(String id) throws URISyntaxException {
         StringBuilder sb = new StringBuilder();
+        PercentEscaper pe = new PercentEscaper("", false);
+
         sb.append(API_BASE_URI);
-        sb.append(READ_PATH);
-        sb.append(id);
+        sb.append(API_PATH);
+        sb.append(SLASH);
+        sb.append(pe.escape(id));
+        sb.append(QUERY_SYM);
+        sb.append("tweet.fields");
+        sb.append(EQUAL);
+        sb.append("created_at,entities,public_metrics");
 
         return new URI(sb.toString());
     }
 
     private URI getDeleteURI(String id) throws URISyntaxException {
         StringBuilder sb = new StringBuilder();
+        PercentEscaper pe = new PercentEscaper("", false);
+
         sb.append(API_BASE_URI);
-        sb.append(DELETE_PATH);
-        sb.append(id);
+        sb.append(API_PATH);
+        sb.append(SLASH);
+        sb.append(pe.escape(id));
 
         return new URI(sb.toString());
     }

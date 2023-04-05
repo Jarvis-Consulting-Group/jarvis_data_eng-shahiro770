@@ -1,5 +1,6 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
+import ca.jrvs.apps.twitter.TwitterApiTest;
 import java.io.IOException;
 import java.net.URI;
 import oauth.signpost.OAuthConsumer;
@@ -11,7 +12,9 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 
 public class TwitterHttpHelper implements HttpHelper {
@@ -19,6 +22,8 @@ public class TwitterHttpHelper implements HttpHelper {
     // dependencies
     private OAuthConsumer consumer;
     private HttpClient httpClient;
+
+    final static Logger logger = LoggerFactory.getLogger(TwitterApiTest.class);
 
     /**
      *  Constructor to set up dependencies using secrets
@@ -32,7 +37,7 @@ public class TwitterHttpHelper implements HttpHelper {
         consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
         consumer.setTokenWithSecret(accessToken, tokenSecret);
 
-        httpClient = new DefaultHttpClient();   // only need a single connection for app purposes
+        httpClient = HttpClientBuilder.create().build();
     }
 
     /**
@@ -42,16 +47,16 @@ public class TwitterHttpHelper implements HttpHelper {
      * @return
      */
     @Override
-    public HttpResponse httpPost(URI uri) {
+    public HttpResponse httpPost(URI uri, StringEntity entityBody) {
         try {
-            return executeHttpRequest(HttpMethod.POST, uri, null);
+            return executeHttpRequest(HttpMethod.POST, uri, entityBody);
         } catch (OAuthException | IOException e) {
             throw new RuntimeException("Failed to execute", e);
         }
     }
 
     /**
-     * Execute a HTTP Get call
+     * Execute a HTTP delete call
      *
      * @param uri
      * @return
@@ -82,6 +87,9 @@ public class TwitterHttpHelper implements HttpHelper {
 
     private HttpResponse executeHttpRequest(HttpMethod method, URI uri, StringEntity stringEntity)
         throws OAuthException, IOException {
+
+        logger.info(uri.toString());
+
         switch (method) {
             case GET:
                 HttpGet getRequest = new HttpGet(uri);
@@ -89,6 +97,7 @@ public class TwitterHttpHelper implements HttpHelper {
                 return httpClient.execute(getRequest);
             case POST:
                 HttpPost postRequest = new HttpPost(uri);
+                postRequest.setHeader("content-type", "application/json");
                 if (stringEntity != null) {
                     postRequest.setEntity(stringEntity);
                 }

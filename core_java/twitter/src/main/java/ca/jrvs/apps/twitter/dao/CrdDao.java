@@ -7,7 +7,7 @@ public interface CrdDao<T, ID> {
      * @param entity entity that to be created
      * @return created entity
      */
-    T create(T entity);
+    T post(T entity);
 
     /**
      * Find an entity(Tweet) by its id

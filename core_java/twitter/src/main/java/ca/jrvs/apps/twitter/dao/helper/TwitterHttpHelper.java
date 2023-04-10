@@ -88,8 +88,6 @@ public class TwitterHttpHelper implements HttpHelper {
     private HttpResponse executeHttpRequest(HttpMethod method, URI uri, StringEntity stringEntity)
         throws OAuthException, IOException {
 
-        logger.info(uri.toString());
-
         switch (method) {
             case GET:
                 HttpGet getRequest = new HttpGet(uri);

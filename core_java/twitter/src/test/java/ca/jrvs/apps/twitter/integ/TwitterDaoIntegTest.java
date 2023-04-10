@@ -2,6 +2,7 @@ package ca.jrvs.apps.twitter.integ;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import ca.jrvs.apps.twitter.TwitterApiTest;
 import ca.jrvs.apps.twitter.dao.TwitterDao;
@@ -52,12 +53,17 @@ public class TwitterDaoIntegTest {
         assertEquals(postTweet.getData().getText(), postResponse.getData().getText());
         try {
             logger.debug(JsonUtil.toJson(postResponse, true, false));
-            logger.debug(postResponse.getData().getId());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+
         Tweet findResponse = dao.findById(postResponse.getData().getId());
         assertEquals(postTweet.getData().getText(), findResponse.getData().getText());
+        try {
+            logger.debug(JsonUtil.toJson(findResponse, true, false));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         Tweet deleteResponse = dao.deleteById(findResponse.getData().getId());
         try {
@@ -66,6 +72,7 @@ public class TwitterDaoIntegTest {
             throw new RuntimeException(e);
         }
         assertNotNull(deleteResponse);
+        assertTrue(deleteResponse.getData().isDeleted());
     }
 
     private Data buildTestData() {

@@ -28,12 +28,13 @@ public class TweetUtil {
 
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == '#' && searchHash == false) {
-                currentHash.setIndices(new int[] {i, -1});
+                currentHash.setStart(i);
+                currentHash.setEnd(-1);
                 searchHash = true;
             }
             else if ((text.charAt(i) == '#' || i == text.length() - 1) && searchHash == true) {
-                currentHash.setIndices(new int[] {currentHash.getIndices()[0], i + 1});
-                currentHash.setText(text.substring(currentHash.getIndices()[0], currentHash.getIndices()[1]));
+                currentHash.setEnd(i + 1);
+                currentHash.setTag(text.substring(currentHash.getStart(), currentHash.getEnd()));
                 hashtags.add(currentHash);
                 searchHash = false;
             }

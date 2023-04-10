@@ -6,22 +6,31 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class Hashtag {
 
-    private String text;
-    private int[] indices;
-
-    public String getText() {
-        return text;
+    public String getTag() {
+        return tag;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
-    public int[] getIndices() {
-        return indices;
+    public int getStart() {
+        return start;
     }
 
-    public void setIndices(int[] indices) {
-        this.indices = indices;
+    public void setStart(int start) {
+        this.start = start;
     }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    private String tag;
+    private int start;
+    private int end;
 }

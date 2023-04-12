@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import ca.jrvs.apps.twitter.TwitterApiTest;
 import ca.jrvs.apps.twitter.dao.TwitterDao;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
@@ -19,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 public class TwitterDaoIntegTest {
 
-    final static Logger logger = LoggerFactory.getLogger(TwitterApiTest.class);
+    final static Logger logger = LoggerFactory.getLogger(TwitterDaoIntegTest.class);
 
     private TwitterDao dao;
 

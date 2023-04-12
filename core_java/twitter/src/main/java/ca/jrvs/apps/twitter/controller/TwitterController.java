@@ -1,17 +1,15 @@
 package ca.jrvs.apps.twitter.controller;
 
-import ca.jrvs.apps.twitter.Controller;
-import ca.jrvs.apps.twitter.Service;
 import ca.jrvs.apps.twitter.model.Data;
 import ca.jrvs.apps.twitter.model.Tweet;
-import ca.jrvs.apps.twitter.service.TwitterService;
+import ca.jrvs.apps.twitter.service.Service;
 import java.util.List;
 
 public class TwitterController implements Controller {
 
-    private TwitterService service;
+    private Service service;
     public TwitterController(Service service) {
-        this.service = (TwitterService) service;
+        this.service = service;
     }
     /**
      * Parse user argument and post a tweet by calling service classes
@@ -45,13 +43,16 @@ public class TwitterController implements Controller {
      */
     @Override
     public Tweet showTweet(String[] args) {
-        if (args.length != 3) {
+        if (args.length < 2 || args.length > 3) {
             throw new IllegalArgumentException("USAGE: TwitterCLIApp show tweet_id \"field1,fields2,...\"");
         }
 
-        String id = args[3];
+        String id = args[1];
 
-        String[] fields = args[4].split(",");
+        String[] fields = null;
+        if (args.length == 3) {
+            fields = args[2].split(",");
+        }
 
         return service.showTweet(id, fields);
     }
@@ -64,12 +65,12 @@ public class TwitterController implements Controller {
      * @throws IllegalArgumentException if args are invalid
      */
     @Override
-    public List<Tweet> deleteTweet(String[] args) {
+    public List<Tweet> deleteTweets(String[] args) {
         if (args.length != 2) {
             throw new IllegalArgumentException("USAGE: TwitterCLIApp delete \"id1,id2,...\"");
         }
 
-        String[] ids = args[2].split(",");
+        String[] ids = args[1].split(",");
 
         return service.deleteTweets(ids);
     }

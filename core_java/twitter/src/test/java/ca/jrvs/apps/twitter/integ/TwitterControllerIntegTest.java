@@ -2,6 +2,7 @@ package ca.jrvs.apps.twitter.integ;
 
 import static org.junit.Assert.assertEquals;
 
+import ca.jrvs.apps.twitter.controller.TwitterController;
 import ca.jrvs.apps.twitter.dao.CrdDao;
 import ca.jrvs.apps.twitter.dao.TwitterDao;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
@@ -14,10 +15,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-public class TwitterServiceIntegTest {
+
+public class TwitterControllerIntegTest {
 
     private CrdDao dao;
     private TwitterService service;
+    private TwitterController controller;
+
+    private static final String POST = "post";
+    private static final String SHOW = "show";
+    private static final String DELETE = "delete";
+
 
     final static Logger logger = LoggerFactory.getLogger(TwitterServiceIntegTest.class);
 
@@ -32,9 +40,10 @@ public class TwitterServiceIntegTest {
 
         // Set up dependency
         HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
-        // pass dependency
+        // pass dependencies
         this.dao = new TwitterDao(httpHelper);
         this.service = new TwitterService(dao);
+        this.controller = new TwitterController(service);
     }
 
     @Test
@@ -42,22 +51,24 @@ public class TwitterServiceIntegTest {
         Tweet postTweet = new Tweet();
         postTweet.setData(buildTestData());
 
-        Tweet postResponse = service.postTweet(postTweet);
+        String[] postArgs = new String[] { POST, postTweet.getData().getText() };
+        Tweet postResponse = controller.postTweet(postArgs);
         assertEquals(postTweet.getData().getText(), postResponse.getData().getText());
 
-        Tweet showResponse = service.showTweet(postResponse.getData().getId(), null);
+        String[] showArgs = new String[] { SHOW, postResponse.getData().getId() };
+        Tweet showResponse = controller.showTweet(showArgs);
         assertEquals(postTweet.getData().getText(), showResponse.getData().getText());
 
-        String[] ids = new String[] { showResponse.getData().getId() };
+        String[] ids = new String[] { DELETE, showResponse.getData().getId() };
 
-        List<Tweet> deleteResponse = service.deleteTweets(ids);
+        List<Tweet> deleteResponse = controller.deleteTweets(ids);
 
         assertEquals(deleteResponse.get(0).getData().isDeleted(), true);
     }
 
     private Data buildTestData() {
         Data data = new Data();
-        data.setText("Testing posting, finding, and deleting 15");
+        data.setText("Testing posting, finding, and deleting 16");
 
         return data;
     }

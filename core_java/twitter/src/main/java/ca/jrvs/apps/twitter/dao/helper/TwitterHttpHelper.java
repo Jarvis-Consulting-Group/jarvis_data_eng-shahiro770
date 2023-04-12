@@ -1,6 +1,5 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
-import ca.jrvs.apps.twitter.TwitterApiTest;
 import java.io.IOException;
 import java.net.URI;
 import oauth.signpost.OAuthConsumer;
@@ -23,7 +22,7 @@ public class TwitterHttpHelper implements HttpHelper {
     private OAuthConsumer consumer;
     private HttpClient httpClient;
 
-    final static Logger logger = LoggerFactory.getLogger(TwitterApiTest.class);
+    final static Logger logger = LoggerFactory.getLogger(TwitterHttpHelper.class);
 
     /**
      *  Constructor to set up dependencies using secrets

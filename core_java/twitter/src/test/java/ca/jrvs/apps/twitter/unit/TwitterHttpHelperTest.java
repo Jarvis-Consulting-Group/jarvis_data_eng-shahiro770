@@ -2,7 +2,7 @@ package ca.jrvs.apps.twitter.unit;
 
 import static org.junit.Assert.assertNotNull;
 
-import ca.jrvs.apps.twitter.TwitterApiTest;
+import ca.jrvs.apps.twitter.api.TwitterApiTest;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import com.google.gdata.util.common.base.PercentEscaper;

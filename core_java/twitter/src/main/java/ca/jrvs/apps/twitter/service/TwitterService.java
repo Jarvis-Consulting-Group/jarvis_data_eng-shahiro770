@@ -1,6 +1,5 @@
 package ca.jrvs.apps.twitter.service;
 
-import ca.jrvs.apps.twitter.Service;
 import ca.jrvs.apps.twitter.dao.CrdDao;
 import ca.jrvs.apps.twitter.model.Data;
 import ca.jrvs.apps.twitter.model.Tweet;

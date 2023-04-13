@@ -12,7 +12,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TwitterDao implements CrdDao<Tweet, String> {
 
     // URI constants
@@ -38,6 +41,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
      *
      * @param httpHelper
      */
+    @Autowired
     public TwitterDao(HttpHelper httpHelper) {
         this.httpHelper = httpHelper;
     }
@@ -107,6 +111,14 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         return parseResponseBody(response, HTTP_OK);
     }
 
+    /**
+     * Transforms the HttpResponse into a Tweet object, throwing an error if the expected status
+     * code does not match
+     *
+     * @param response Response from the twitterAPI v2
+     * @param expectedStatusCode HTTP_OK or HTTP_CREATED are expected for this app's use cases
+     * @return
+     */
     public Tweet parseResponseBody(HttpResponse response, int expectedStatusCode) {
         Tweet tweet = null;
 

@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+import org.springframework.beans.factory.annotation.Autowired;
 
+@org.springframework.stereotype.Service
 public class TwitterService implements Service {
 
     private CrdDao dao;
 
+    @Autowired
     public TwitterService(CrdDao dao) {
         this.dao = dao;
     }
@@ -111,7 +114,7 @@ public class TwitterService implements Service {
         if (fields != null) {
             for (int i = 0; i < fields.length; i++) {
                 if ((fields[i].equals("id") || fields[i].equals("text") || fields[i].equals("entities")
-                || fields[i].equals("public_metrics")) == false) {
+                || fields[i].equals("public_metrics") || fields[i].equals("created_at")) == false) {
                     throw new IllegalArgumentException(fields[i] + " is not a valid field specified");
                 }
             }

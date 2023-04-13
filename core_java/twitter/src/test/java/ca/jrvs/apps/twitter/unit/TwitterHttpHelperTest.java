@@ -2,7 +2,6 @@ package ca.jrvs.apps.twitter.unit;
 
 import static org.junit.Assert.assertNotNull;
 
-import ca.jrvs.apps.twitter.api.TwitterApiTest;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import com.google.gdata.util.common.base.PercentEscaper;
@@ -18,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 public class TwitterHttpHelperTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(TwitterApiTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(TwitterHttpHelperTest.class);
     private static final int ID_TOKEN_NUM = 5;
 
     private HttpHelper httpHelper;

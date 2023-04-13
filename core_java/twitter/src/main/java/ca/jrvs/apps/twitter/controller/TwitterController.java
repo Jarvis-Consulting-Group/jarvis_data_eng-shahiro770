@@ -4,13 +4,18 @@ import ca.jrvs.apps.twitter.model.Data;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.service.Service;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
+@org.springframework.stereotype.Controller
 public class TwitterController implements Controller {
 
     private Service service;
+
+    @Autowired
     public TwitterController(Service service) {
         this.service = service;
     }
+
     /**
      * Parse user argument and post a tweet by calling service classes
      *

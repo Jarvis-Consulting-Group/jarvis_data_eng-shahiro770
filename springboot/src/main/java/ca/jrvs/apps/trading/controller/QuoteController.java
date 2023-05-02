@@ -23,7 +23,7 @@ public class QuoteController {
         this.quoteService = quoteService;
     }
 
-    @GetMapping(path = "/iex/ticker/{ticker")
+    @GetMapping(path = "/iex/ticker/{ticker}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public IexQuote getQuote(@PathVariable String ticker) {

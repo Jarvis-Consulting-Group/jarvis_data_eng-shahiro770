@@ -12,7 +12,7 @@ public class ResponseExceptionUtil {
     public static ResponseStatusException getResponseStatusException(Exception ex) {
         if (ex instanceof IllegalArgumentException) {
             logger.debug("Invalid input", ex);
-            return new ResponseStatusException((HttpStatus.BAD_REQUEST, ex.getMessage());
+            return new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
         else {
             logger.error("Internal Error", ex);

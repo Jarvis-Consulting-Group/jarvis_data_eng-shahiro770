@@ -19,6 +19,9 @@ skills:
     - Git
     - Unity
     - Microservices
+    - Docker
+    - MVC
+    - REST APIs
   # At least 5 skills
   competent:
     - C#
@@ -26,10 +29,11 @@ skills:
     - Redux
     - TypeScript
     - SQL/Postgres
-    - Docker
     - AWS
     - Azure
-    - Spring
+    - Spring/Springboot
+    - Angular
+    - JUnit
   # At least 5 skills
   familiar:
     - Bash
@@ -54,7 +58,9 @@ jarvis_projects:
   - name: "Twitter CRUD App"
     git_url: "/core_java/twitter"
     description: "Created a Java CRUD application that uses Twitter's REST API v2 to create and manage tweets. The user can create tweets, search for tweets, or delete a list of tweets by ID, all from via CLI. The app sends requests to Twitter's API through HTTP requests in the form of JSON messages, authenticated with OAuth. The architecture used follows the MVC design pattern, with unit and integration testing being done through Mockito and JUnit. The build system used was Maven, and deployment was done through Docker."
-
+  - name: "Spring Boot Trading App"
+    git_url: "/springboot"
+    description: "Developed the backend REST API for a proof of concept trading platform, allowing users to create an account, monitor their portfolio's performance, and buy and sell securities. The software architecture follows the standard MVC pattern, using Java and Spring for the layer implementations. User data is persisted in a PostgreSQL database via Spring JDBC, while market data is retrieved by leveraging IEX Cloud API. All endpoints are unit and integration tested via JUnit and Mockito. Dependencies were managed via Maven and Spring, with deployment done through Docker."
 
 # List of personal or academic projects
 # Feel free to add more projects

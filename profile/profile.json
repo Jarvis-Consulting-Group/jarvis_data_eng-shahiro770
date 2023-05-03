@@ -40,6 +40,11 @@
       "description": "Created a Java CRUD application that uses Twitter's REST API v2 to create and manage tweets. The user can create tweets, search for tweets, or delete a list of tweets by ID, all from via CLI. The app sends requests to Twitter's API through HTTP requests in the form of JSON messages, authenticated with OAuth. The architecture used follows the MVC design pattern, with unit and integration testing being done through Mockito and JUnit. The build system used was Maven, and deployment was done through Docker.",
       "git_url": "/core_java/twitter",
       "name": "Twitter CRUD App"
+    },
+    {
+      "description": "Developed the backend REST API for a proof of concept trading platform, allowing users to create an account, monitor their portfolio's performance, and buy and sell securities. The software architecture follows the standard MVC pattern, using Java and Spring for the layer implementations. User data is persisted in a PostgreSQL database via Spring JDBC, while market data is retrieved by leveraging IEX Cloud API. All endpoints are unit and integration tested via JUnit and Mockito. Dependencies were managed via Maven and Spring, with deployment done through Docker.",
+      "git_url": "/springboot",
+      "name": "Spring Boot Trading App"
     }
   ],
   "name": "Shahir Chowdhury",
@@ -86,10 +91,11 @@
       "Redux",
       "TypeScript",
       "SQL/Postgres",
-      "Docker",
       "AWS",
       "Azure",
-      "Spring"
+      "Spring/Springboot",
+      "Angular",
+      "JUnit"
     ],
     "familiar": [
       "Bash",
@@ -105,7 +111,10 @@
       "Agile/Scrum",
       "Git",
       "Unity",
-      "Microservices"
+      "Microservices",
+      "Docker",
+      "MVC",
+      "REST APIs"
     ]
   },
   "summary": "Hello, I'm a new hire at Jarvis Consulting Group working as a technical consultant. I studied at the University of Windsor, completing my bachelor's degree in computer science and graduating with a major GPA of 3.7. During my time at the university, I interned for 16 months at IBM. While there, I primarily worked as a front-end developer, where I gained knowledge of how to create efficient and responsive UIs by developing features and workflows for SPSS Statistics, a statistical analysis application. Upon graduating, I worked for a year at Amazon on the operations side.  My main focus was on developing the tools sellers would use to ship their goods to Amazon warehouses, which helped me learn the basics of working with microsystem architecture. I find learning to be a very fun process, which is why I think I enjoyed my time at IBM and Amazon with all of the opportunities they presented to dive deep into technologies I wasn't familiar with. I prioritize personal growth more than anything and am eagerly looking for opportunities to improve my skills as a software developer. Outside of work, I enjoy going for runs, weight lifting, and playing video games. I hope you enjoy reading my profile."

@@ -4,9 +4,9 @@ Hello, I'm a new hire at Jarvis Consulting Group working as a technical consulta
 
 ## Skills
 
-**Proficient:** Java, JavaScript, ReactJS, Agile/Scrum, Git, Unity, Microservices
+**Proficient:** Java, JavaScript, ReactJS, Agile/Scrum, Git, Unity, Microservices, Docker, MVC, REST APIs
 
-**Competent:** C#, Python, Redux, TypeScript, SQL/Postgres, Docker, AWS, Azure, Spring
+**Competent:** C#, Python, Redux, TypeScript, SQL/Postgres, AWS, Azure, Spring/Springboot, Angular, JUnit
 
 **Familiar:** Bash, Node.js, GraphQL, C/C++, Octave
 
@@ -22,6 +22,8 @@ Project source code: [https://github.com/Jarvis-Consulting-Group/jarvis_data_eng
 **JDBC App** [[GitHub](https://github.com/Jarvis-Consulting-Group/jarvis_data_eng-shahiro770/tree/release/core_java/jdbc)]: A simple Java app that uses the JDBC API to execute CRUD operations on a PSQL database. The app makes use of DAO and repository design patterns to maintain data integrity. The app had its dependencies managed via Maven and was deployed through Docker.
 
 **Twitter CRUD App** [[GitHub](https://github.com/Jarvis-Consulting-Group/jarvis_data_eng-shahiro770/tree/release/core_java/twitter)]: Created a Java CRUD application that uses Twitter's REST API v2 to create and manage tweets. The user can create tweets, search for tweets, or delete a list of tweets by ID, all from via CLI. The app sends requests to Twitter's API through HTTP requests in the form of JSON messages, authenticated with OAuth. The architecture used follows the MVC design pattern, with unit and integration testing being done through Mockito and JUnit. The build system used was Maven, and deployment was done through Docker.
+
+**Spring Boot Trading App** [[GitHub](https://github.com/Jarvis-Consulting-Group/jarvis_data_eng-shahiro770/tree/master/springboot)]: Developed the backend REST API for a proof of concept trading platform, allowing users to create an account, monitor their portfolio's performance, and buy and sell securities. The software architecture follows the standard MVC pattern, using Java and Spring for the layer implementations. User data is persisted in a PostgreSQL database via Spring JDBC, while market data is retrieved by leveraging IEX Cloud API. All endpoints are unit and integration tested via JUnit and Mockito. Dependencies were managed via Maven and Spring, with deployment done through Docker.
 
 
 ## Highlighted Projects

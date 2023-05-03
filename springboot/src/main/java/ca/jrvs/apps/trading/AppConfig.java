@@ -1,6 +1,8 @@
 package ca.jrvs.apps.trading;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
+import javax.sql.DataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.slf4j.Logger;
@@ -34,6 +36,25 @@ public class AppConfig {
         cm.setDefaultMaxPerRoute(50);
 
         return cm;
+    }
+
+    @Bean
+    public DataSource getDataSource() {
+        StringBuilder jdbcUrl = new StringBuilder();
+        jdbcUrl.append("jdbc:postgresql://");
+        jdbcUrl.append(System.getenv("PSQL_HOST"));
+        jdbcUrl.append(":");
+        jdbcUrl.append(System.getenv("PSQL_PORT"));
+        jdbcUrl.append("/");
+        jdbcUrl.append( System.getenv("PSQL_DB"));
+        String user = System.getenv("PSQL_USER");
+        String password = System.getenv("PSQL_PASSWORD");
+
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(jdbcUrl.toString());
+        basicDataSource.setUsername(user);
+        basicDataSource.setPassword(password);
+        return basicDataSource;
     }
 
     @Bean

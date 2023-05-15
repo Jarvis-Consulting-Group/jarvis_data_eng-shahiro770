@@ -1,5 +1,6 @@
 package ca.jrvs.apps.trading;
 
+import ca.jrvs.apps.trading.dao.MarketDataDao;
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -8,14 +9,15 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-// @EnableTransactionManagement
-public class AppConfig {
+@ComponentScan(basePackages = {"ca.jrvs.apps.trading.dao", "ca.jrvs.apps.trading.service"})
+public class TestConfig {
 
-    private Logger logger = LoggerFactory.getLogger(AppConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestConfig.class);
 
     @Bean
     public MarketDataConfig marketDataConfig() {
@@ -37,18 +39,14 @@ public class AppConfig {
 
     @Bean
     public DataSource getDataSource() {
-        StringBuilder jdbcUrl = new StringBuilder();
-        jdbcUrl.append("jdbc:postgresql://");
-        jdbcUrl.append(System.getenv("PSQL_HOST"));
-        jdbcUrl.append(":");
-        jdbcUrl.append(System.getenv("PSQL_PORT"));
-        jdbcUrl.append("/");
-        jdbcUrl.append( System.getenv("PSQL_DB"));
+        logger.debug("Creating apacheDataSource");
+
+        String url = System.getenv("PSQL_URL");
         String user = System.getenv("PSQL_USER");
         String password = System.getenv("PSQL_PASSWORD");
 
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(jdbcUrl.toString());
+        basicDataSource.setUrl(url);
         basicDataSource.setUsername(user);
         basicDataSource.setPassword(password);
         return basicDataSource;
